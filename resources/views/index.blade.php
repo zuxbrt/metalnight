@@ -3,6 +3,9 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta property="og:title"              content="MetalNightRadio" />
+        <meta property="og:description"        content="Metal Night je živ, zdrav i brutalniji nego ikad u borbi protiv komšiluka!" />
+        <meta property="og:image"              content="{{url('images/poster.png')}}" />
 
         <title>MetalNightRadio</title>
 
@@ -24,14 +27,13 @@
                 margin: 0;
             }
 
+            audio {
+                background-color: black;
+            }
+
             body{
-                /* The image used */
                 background-image: url("{{url('images/poster.png')}}");
-
-                /* Full height */
                 height: 100%;
-
-                /* Center and scale the image nicely */
                 background-position: center;
                 background-repeat: no-repeat;
                 background-size: contain;
@@ -115,6 +117,8 @@
                 -webkit-box-shadow: 2px 2px 15px 3px rgba(255,0,0,1);
                 -moz-box-shadow: 2px 2px 15px 3px rgba(255,0,0,1);
                 box-shadow: 2px 2px 15px 3px rgba(255,0,0,1);
+                padding-top: 15px;
+                padding-bottom: 20px;
             }
             #currentsongdiv, #nextsongdiv{
                 display: flex;
@@ -136,8 +140,13 @@
             }
 
             .title-main{
-                margin-top: 1%;
+                margin-top: 10px;
+                margin-bottom: 15px;
                 font-size: 20px;
+            }
+
+            #nextsongdiv{
+                margin-bottom: 10px;
             }
 
             .credits{
@@ -151,12 +160,24 @@
                 flex-direction: column;
                 right: 100px;
             }
+
+            .by{
+                position: absolute;
+                right: 10px;
+                top: 10px;
+                text-decoration: none;
+                color: white;
+                font-weight: 300;
+                font-size: 15px;
+                cursor: pointer;
+            }
+
         </style>
     </head>
-    <!-- <script type="text/javascript" src="https://hosted.muses.org/mrp.js"></script> -->
     </script>
     <body>
         <div class="flex-center position-ref full-height">
+        <a class="by" href="https://zuxbrt.github.io/">by zux</a>
                 <div id="info">
                     <p class='title-main'>Metal Night Radio</p>
                     <div id="currentsongdiv">
@@ -169,18 +190,15 @@
                     </div>
 
                     <audio id="stream-player" src="{{$streamurl}}" autoplay allow="autoplay" controls="true" volume="0.8"></audio>
-                    <div id="poweredby">
-                        <img class="credits" src="{{url('/images/by.png')}}">
-                    </div>
+
                 </div>
         </div>
     </body>
 </html>
 <script>
     $( document ).ready(function() {
-
         $("#stream-player").get(0).play();
-
+        console.clear();
         setInterval(function() {
             $.ajax({
                 url: '{{route('getInfo')}}',
