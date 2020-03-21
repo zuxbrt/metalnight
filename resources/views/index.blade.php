@@ -173,6 +173,13 @@
                 font-size: 15px;
                 cursor: pointer;
             }
+            .listeners{
+                color: white;
+                position: absolute;
+                top: 10px;
+                left: 10px;
+                font-size: 15px;
+            }
 
         </style>
     </head>
@@ -180,6 +187,9 @@
     <body>
         <div class="flex-center position-ref full-height">
         <a class="by" href="https://zuxbrt.github.io/">by zux</a>
+        <div class='listenters'>
+            Listeners:&nbsp{{$listeners}}
+        </div>
         @if($streamactive)
                 <div id="info">
                     <p class='title-main'>Metal Night Radio</p>
