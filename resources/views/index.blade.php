@@ -217,19 +217,21 @@
         if(active){
             $("#stream-player").get(0).play();
             console.clear();
-            setInterval(function() {
+            //setInterval(function() {
                 $.ajax({
                     url: '{{route('getInfo')}}',
                     type: "GET",
                     success: function(data, textStatus, jqXHR) {
                         document.getElementById('currentsong').innerHTML    = data.currentsong;
-                        document.getElementById('nextsong').innerHTML       = data.nextsong;
+                        if(data.nextsong){
+                            document.getElementById('nextsong').innerHTML       = data.nextsong;
+                        }
                     },
                     error: function(jqXHR, textStatus, errorThrown) {
                         //alert('Error occurred!');
                     }
                 });
-            }, 60 * 1000);
+            //}, 60 * 1000);
         }
         
     });

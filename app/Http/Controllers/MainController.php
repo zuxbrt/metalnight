@@ -38,8 +38,10 @@ class MainController extends Controller
     public function getSongsInfo()
     {
         $info = $this->getInfo();
+        $currentsong  = $info['SONGTITLE'];
+        $nextsong = isset($info['NEXTTITLE']) ? $info['NEXTTITLE'] : null;
         return response()
-            ->json(['currentsong' => $info['SONGTITLE'], 'nextsong' => $info['NEXTTITLE']]);
+            ->json(['currentsong' => $currentsong, 'nextsong' => $nextsong]);
     }
 
     public function getInfo()
