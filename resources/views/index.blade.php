@@ -217,7 +217,7 @@
         if(active){
             $("#stream-player").get(0).play();
             console.clear();
-            //setInterval(function() {
+            setInterval(function() {
                 $.ajax({
                     url: '{{route('getInfo')}}',
                     type: "GET",
@@ -231,7 +231,7 @@
                         //alert('Error occurred!');
                     }
                 });
-            //}, 60 * 1000);
+            }, 60 * 1000);
         }
         
     });
