@@ -24,6 +24,19 @@
                 margin: 0;
             }
 
+            body{
+                /* The image used */
+                background-image: url("{{url('images/poster.png')}}");
+
+                /* Full height */
+                height: 100%;
+
+                /* Center and scale the image nicely */
+                background-position: center;
+                background-repeat: no-repeat;
+                background-size: contain;
+            }
+
             .full-height {
                 height: 100vh;
             }
@@ -76,23 +89,24 @@
                 /* visibility: hidden; */
                 margin-left: auto;
                 margin-right: auto;
-                margin-top: 3%;
+                margin-top: 10px;
             }
 
             #info{
+                position: fixed;
+                bottom: 0;
+                width: 100%;
                 background: black;
                 text-align: center;
                 justify-content: center;
-                max-width: 900px;
-                width: auto;
-                margin: auto;
-                min-height: 300px;
                 height: auto;
                 color: white;
                 display: flex;
                 flex-direction: column;
                 flex-wrap: nowrap;
-                padding: 30px;
+                padding-left: 30px;
+                padding-right: 30px;
+                padding-bottom: 1%;
                 border-radius: 20px;
                 /* border: 1px solid red; */
                 font-size: 4em;
@@ -110,22 +124,41 @@
             }
 
             .infotext{
-                font-size: 20px;
+                font-size: 14px;
                 font-weight: 500;
+                margin-top: 5px;
+                margin-bottom: 5px;
+                font-weight: 600;
             }
 
             .infotext.next, .infotext.current{
                 margin-left: 10px;
+            }
+
+            .title-main{
+                margin-top: 1%;
+                font-size: 20px;
+            }
+
+            .credits{
+                width: 200px;
+                height: auto;
+            }
+
+            #poweredby{
+                position: absolute;
+                display: flex;
+                flex-direction: column;
+                right: 100px;
             }
         </style>
     </head>
     <!-- <script type="text/javascript" src="https://hosted.muses.org/mrp.js"></script> -->
     </script>
     <body>
-        <!-- <img class='background' src="{{url('images/poster.jpg')}}"> -->
         <div class="flex-center position-ref full-height">
-                <div id="info" class="title m-b-md">
-                    Metal Night Radio
+                <div id="info">
+                    <p class='title-main'>Metal Night Radio</p>
                     <div id="currentsongdiv">
                         <p class='infotext'>Now playing:</p>
                         <p id="currentsong" class='infotext current'>{{$currentsong}}</p> 
@@ -135,7 +168,10 @@
                         <p id="nextsong" class='infotext next'>{{$nextsong}}</p> 
                     </div>
 
-                    <audio id="stream-player" src="{{$streamurl}}" autoplay allow="autoplay" controls="true" volume="0.8">
+                    <audio id="stream-player" src="{{$streamurl}}" autoplay allow="autoplay" controls="true" volume="0.8"></audio>
+                    <div id="poweredby">
+                        <img class="credits" src="{{url('/images/by.png')}}">
+                    </div>
                 </div>
         </div>
     </body>
