@@ -81,19 +81,26 @@
 
             #info{
                 background: black;
+                text-align: center;
+                justify-content: center;
+                max-width: 900px;
+                width: auto;
+                margin: auto;
+                min-height: 300px;
+                height: auto;
                 color: white;
-                display:flex;
+                display: flex;
                 flex-direction: column;
                 flex-wrap: nowrap;
-                padding: 20px;
+                padding: 30px;
                 border-radius: 20px;
                 /* border: 1px solid red; */
                 font-size: 4em;
                 font-weight: 600;
                 /* opacity: 0.8; */
-                -webkit-box-shadow: 2px 2px 38px 9px rgba(255,0,0,1);
-                -moz-box-shadow: 2px 2px 38px 9px rgba(255,0,0,1);
-                box-shadow: 2px 2px 38px 9px rgba(255,0,0,1)
+                -webkit-box-shadow: 2px 2px 15px 3px rgba(255,0,0,1);
+                -moz-box-shadow: 2px 2px 15px 3px rgba(255,0,0,1);
+                box-shadow: 2px 2px 15px 3px rgba(255,0,0,1);
             }
             #currentsongdiv, #nextsongdiv{
                 display: flex;
@@ -112,13 +119,11 @@
             }
         </style>
     </head>
-    <script type="text/javascript" src="https://hosted.muses.org/mrp.js"></script>
+    <!-- <script type="text/javascript" src="https://hosted.muses.org/mrp.js"></script> -->
     </script>
-    <!-- ENDS: AUTO-GENERATED MUSES RADIO PLAYER CODE -->
     <body>
-        <img class='background' src="{{url('images/poster.jpg')}}">
+        <!-- <img class='background' src="{{url('images/poster.jpg')}}"> -->
         <div class="flex-center position-ref full-height">
-            <div class="content">
                 <div id="info" class="title m-b-md">
                     Metal Night Radio
                     <div id="currentsongdiv">
@@ -132,7 +137,6 @@
 
                     <audio id="stream-player" src="{{$streamurl}}" autoplay allow="autoplay" controls="true" volume="0.8">
                 </div>
-            </div>
         </div>
     </body>
 </html>
@@ -146,8 +150,8 @@
                 url: '{{route('getInfo')}}',
                 type: "GET",
                 success: function(data, textStatus, jqXHR) {
-                    document.getElementByID('currentsong').innerHTML    = data.currentsong;
-                    document.getElementByID('nextsong').innerHTML       = data.nextsong;
+                    document.getElementById('currentsong').innerHTML    = data.currentsong;
+                    document.getElementById('nextsong').innerHTML       = data.nextsong;
                 },
                 error: function(jqXHR, textStatus, errorThrown) {
                     //alert('Error occurred!');
