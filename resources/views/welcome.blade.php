@@ -69,10 +69,13 @@
             }
         </style>
     </head>
+    <script type="text/javascript" src="https://hosted.muses.org/mrp.js"></script>
+    </script>
+    <!-- ENDS: AUTO-GENERATED MUSES RADIO PLAYER CODE -->
     <body>
         <img class='background' src="{{url('images/poster.jpg')}}">
         <div class="flex-center position-ref full-height">
-            @if (Route::has('login'))
+            <!-- @if (Route::has('login'))
                 <div class="top-right links">
                     @auth
                         <a href="{{ url('/home') }}">Home</a>
@@ -84,12 +87,13 @@
                         @endif
                     @endauth
                 </div>
-            @endif
+            @endif -->
 
             <div class="content">
                 <div class="title m-b-md">
-                    Metal Najt
+                    Metal Night Radio
                 </div>
+                <audio src="http://35.216.174.122:8000/stream" autoplay controls="true" volume="1.0"></iframe>
 
                 <div class="links">
                     <a href="https://laravel.com/docs">Noga uusta</a>
