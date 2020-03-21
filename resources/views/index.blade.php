@@ -188,7 +188,7 @@
         <div class="flex-center position-ref full-height">
         <a class="by" href="https://zuxbrt.github.io/">by zux</a>
         <div class='listeners'>
-            Listeners:&nbsp{{$listeners}}
+            Listening:&nbsp{{$listeners}}
         </div>
         @if($streamactive)
                 <div id="info">
