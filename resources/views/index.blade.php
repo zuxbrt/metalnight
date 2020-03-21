@@ -180,6 +180,7 @@
     <body>
         <div class="flex-center position-ref full-height">
         <a class="by" href="https://zuxbrt.github.io/">by zux</a>
+        @if($streamactive)
                 <div id="info">
                     <p class='title-main'>Metal Night Radio</p>
                     <div id="currentsongdiv">
@@ -194,26 +195,31 @@
                     <audio id="stream-player" src="{{$streamurl}}" autoplay allow="autoplay" controls="true" volume="0.8"></audio>
 
                 </div>
+        @endif
         </div>
     </body>
 </html>
 <script>
     $( document ).ready(function() {
-        $("#stream-player").get(0).play();
-        console.clear();
-        setInterval(function() {
-            $.ajax({
-                url: '{{route('getInfo')}}',
-                type: "GET",
-                success: function(data, textStatus, jqXHR) {
-                    document.getElementById('currentsong').innerHTML    = data.currentsong;
-                    document.getElementById('nextsong').innerHTML       = data.nextsong;
-                },
-                error: function(jqXHR, textStatus, errorThrown) {
-                    //alert('Error occurred!');
-                }
-            });
-        }, 60 * 1000);
+        let active = {!! json_encode($streamactive) !!};
+        if(active){
+            $("#stream-player").get(0).play();
+            console.clear();
+            setInterval(function() {
+                $.ajax({
+                    url: '{{route('getInfo')}}',
+                    type: "GET",
+                    success: function(data, textStatus, jqXHR) {
+                        document.getElementById('currentsong').innerHTML    = data.currentsong;
+                        document.getElementById('nextsong').innerHTML       = data.nextsong;
+                    },
+                    error: function(jqXHR, textStatus, errorThrown) {
+                        //alert('Error occurred!');
+                    }
+                });
+            }, 60 * 1000);
+        }
+        
     });
    
 </script>

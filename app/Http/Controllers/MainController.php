@@ -14,11 +14,23 @@ class MainController extends Controller
         //$this->getInfo();
         $streamurl = env('STREAM_SERVER_URL').'stream';
         $info = $this->getInfo();
+        
+        $currentsong = '';
+        $nextsong = '';
+
+        $streamactive = true;
+        if($info['SERVERURL'] === ""){
+            $streamactive = false;
+        } else {
+            $currentsong = $info['SONGTITLE'];
+            $nextsong = $info['NEXTTITLE'];
+        }
 
         return view('index', [
             'streamurl' => $streamurl,
-            'currentsong' => $info['SONGTITLE'],
-            'nextsong' => $info['NEXTTITLE'],
+            'currentsong' => $currentsong,
+            'nextsong' => $nextsong,
+            'streamactive' => $streamactive,
         ]);
     }
 
