@@ -3,6 +3,8 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta property="og:url"                content="http://34.89.230.253/" />
+        <meta property="og:type"               content="website" />
         <meta property="og:title"              content="MetalNightRadio" />
         <meta property="og:description"        content="Metal Night je živ, zdrav i brutalniji nego ikad u borbi protiv komšiluka!" />
         <meta property="og:image"              content="{{url('images/poster.png')}}" />
