@@ -23,7 +23,7 @@ class MainController extends Controller
             $streamactive = false;
         } else {
             $currentsong = $info['SONGTITLE'];
-            $nextsong = $info['NEXTTITLE'];
+            $nextsong = isset($info['NEXTTITLE']) ? $info['NEXTTITLE'] : '';
         }
 
         return view('index', [

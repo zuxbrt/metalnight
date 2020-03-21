@@ -188,8 +188,10 @@
                         <p id="currentsong" class='infotext current'>{{$currentsong}}</p> 
                     </div>
                     <div id="nextsongdiv">
+                    @if(isset($info['NEXTTITLE']))
                         <p class='infotext'>Up next:</p>
                         <p id="nextsong" class='infotext next'>{{$nextsong}}</p> 
+                    @endif
                     </div>
 
                     <audio id="stream-player" src="{{$streamurl}}" autoplay allow="autoplay" controls="true" volume="0.8"></audio>
