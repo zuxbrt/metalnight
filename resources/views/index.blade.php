@@ -276,6 +276,8 @@
     </body>
 </html>
 <script>
+    document.body.addEventListener("click", checkClose);
+
     $( document ).ready(function() {
         let active = {!! json_encode($streamactive) !!};
         if(active){
@@ -299,18 +301,29 @@
         }
     });
    
-   function toggleChat(){
-       var element = document.getElementById('chat');
-       if(element){
-           if(document.getElementById('chat').classList.contains('open')){
+    function toggleChat(){
+        var element = document.getElementById('chat');
+        if(element){
+            if(document.getElementById('chat').classList.contains('open')){
                 document.getElementById("chat").classList.remove("open");
                 document.getElementById("toggle-chat").classList.remove('active');
                 //$("#toggle-chat-button").html('Show chat');
-           } else {
+            } else {
                 document.getElementById("chat").classList.add("open");
                 document.getElementById("toggle-chat").classList.add('active');
                 //$("#toggle-chat-button").html('Hide chat');
-           }
-       }
-   }
+            }
+        }
+    }
+
+    function checkClose(event){
+        let id = event.target.id;
+        if(id != 'toggle-chat'){
+            let chatOpen = document.getElementById('chat').classList.contains('open');
+            if(chatOpen){
+                document.getElementById("chat").classList.remove("open");
+                document.getElementById("toggle-chat").classList.remove('active');
+            }
+        }
+    }
 </script>
