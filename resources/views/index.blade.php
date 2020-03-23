@@ -172,13 +172,20 @@
                 font-weight: 300;
                 font-size: 15px;
                 cursor: pointer;
+                user-select: none;
+                transition: color 0.5s ease;
             }
+            .by:hover{
+                color: red;
+            }
+
             .listeners{
                 color: white;
                 position: absolute;
                 top: 10px;
                 left: 10px;
                 font-size: 15px;
+                user-select: none;
             }
             #paused{
                 color: white;
@@ -218,6 +225,7 @@
                 margin-top: 15px;
                 cursor: pointer;
                 transition: box-shadow 0.5s ease;
+                user-select: none;
             }
 
             #toggle-chat.active{
