@@ -198,7 +198,7 @@
                         <p id="currentsong" class='infotext current'>{{$currentsong}}</p> 
                     </div>
                     <div id="nextsongdiv">
-                    @if(isset($info['NEXTTITLE']))
+                    @if($nextsong !== '')
                         <p class='infotext'>Up next:</p>
                         <p id="nextsong" class='infotext next'>{{$nextsong}}</p> 
                     @endif
