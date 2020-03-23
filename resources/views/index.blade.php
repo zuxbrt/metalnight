@@ -120,7 +120,7 @@
                 -moz-box-shadow: 2px 2px 15px 3px rgba(255,0,0,1);
                 box-shadow: 2px 2px 15px 3px rgba(255,0,0,1);
                 padding-top: 15px;
-                padding-bottom: 20px;
+                padding-bottom: 15px;
             }
             #currentsongdiv, #nextsongdiv{
                 display: flex;
@@ -196,7 +196,8 @@
                 transition: right 0.25s ease-in;
                 display: flex;
                 flex-direction: column;
-                bottom: -12px;
+                /* bottom: -12px; */
+                bottom: -5px;
             }
 
             #chat.open{
@@ -208,16 +209,21 @@
                 text-align: center;
                 margin-left: auto;
                 /* margin-right: 5%; */
-                margin-right: 64px;
+                margin-right: 20px;
                 z-index: 1000;
-                -webkit-box-shadow: 2px 2px 15px 3px rgba(255,0,0,1);
-                -moz-box-shadow: 2px 2px 15px 3px rgba(255,0,0,1);
-                box-shadow: 2px 2px 15px 3px rgba(255,0,0,1);
-                width: 200px;
-                height: 30px;
+                box-shadow: none;
+                height: 40px;
                 line-height: 30px;
                 border-radius: 25px;
                 margin-top: 15px;
+                cursor: pointer;
+                transition: box-shadow 0.5s ease;
+            }
+
+            #toggle-chat.active{
+                -webkit-box-shadow: 0px 0px 15px 3px rgba(255,0,0,1);
+                -moz-box-shadow: 0px 0px 15px 3px rgba(255,0,0,1);
+                box-shadow: 0px 0px 15px 3px rgba(255,0,0,1);
             }
 
 
@@ -250,11 +256,7 @@
                     <div id="chat">
                         <iframe src="https://minnit.chat/metalnightchat?embed&dark&nickname=" style="border:none;width:90%;height:500px;" allowTransparency="true"></iframe><br>
                     </div>
-                    <div id="toggle-chat" onclick="toggleChat()">
-                        <div id="toggle-chat-button">
-                            <div class="button-styles">Show chat</div>
-                        </div>
-                    </div>
+                    <img id="toggle-chat" src="{{url('images/svg/chat.svg')}}" onclick="toggleChat()">
                         <!-- <a href="https://minnit.chat/metalnightchat" target="_blank">HTML5 Chatroom powered by Minnit Chat</a> -->
                 </div>
         @else
@@ -294,10 +296,12 @@
        if(element){
            if(document.getElementById('chat').classList.contains('open')){
                 document.getElementById("chat").classList.remove("open");
-                $("#toggle-chat-button").html('Show chat');
+                document.getElementById("toggle-chat").classList.remove('active');
+                //$("#toggle-chat-button").html('Show chat');
            } else {
                 document.getElementById("chat").classList.add("open");
-                $("#toggle-chat-button").html('Hide chat');
+                document.getElementById("toggle-chat").classList.add('active');
+                //$("#toggle-chat-button").html('Hide chat');
            }
        }
    }
