@@ -189,6 +189,38 @@
                 margin-bottom: 20px;
             }
 
+            #chat{
+                position: fixed;
+                bottom: -25px;
+                right: -300px;
+                transition: right 0.25s ease-in;
+                display: flex;
+                flex-direction: column;
+                bottom: -12px;
+            }
+
+            #chat.open{
+                right: 0;
+            }
+
+            #toggle-chat{
+                font-size: 15px;
+                text-align: center;
+                margin-left: auto;
+                /* margin-right: 5%; */
+                margin-right: 64px;
+                z-index: 1000;
+                -webkit-box-shadow: 2px 2px 15px 3px rgba(255,0,0,1);
+                -moz-box-shadow: 2px 2px 15px 3px rgba(255,0,0,1);
+                box-shadow: 2px 2px 15px 3px rgba(255,0,0,1);
+                width: 200px;
+                height: 30px;
+                line-height: 30px;
+                border-radius: 25px;
+                margin-top: 15px;
+            }
+
+
         </style>
     </head>
     </script>
@@ -215,7 +247,15 @@
                     </div>
 
                     <audio id="stream-player" src="{{$streamurl}}" autoplay allow="autoplay" controls="true" volume="0.8"></audio>
-
+                    <div id="chat">
+                        <iframe src="https://minnit.chat/metalnightchat?embed&dark&nickname=" style="border:none;width:90%;height:500px;" allowTransparency="true"></iframe><br>
+                    </div>
+                    <div id="toggle-chat" onclick="toggleChat()">
+                        <div id="toggle-chat-button">
+                            <div class="button-styles">Show chat</div>
+                        </div>
+                    </div>
+                        <!-- <a href="https://minnit.chat/metalnightchat" target="_blank">HTML5 Chatroom powered by Minnit Chat</a> -->
                 </div>
         @else
             <div id='paused'>
@@ -247,7 +287,18 @@
                 });
             }, 60 * 1000);
         }
-        
     });
    
+   function toggleChat(){
+       var element = document.getElementById('chat');
+       if(element){
+           if(document.getElementById('chat').classList.contains('open')){
+                document.getElementById("chat").classList.remove("open");
+                $("#toggle-chat-button").html('Show chat');
+           } else {
+                document.getElementById("chat").classList.add("open");
+                $("#toggle-chat-button").html('Hide chat');
+           }
+       }
+   }
 </script>
