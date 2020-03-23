@@ -180,6 +180,14 @@
                 left: 10px;
                 font-size: 15px;
             }
+            #paused{
+                color: white;
+                background: black;
+                padding: 20px;
+                border-radius: 5px;
+                margin-top: auto;
+                margin-bottom: 20px;
+            }
 
         </style>
     </head>
@@ -187,9 +195,11 @@
     <body>
         <div class="flex-center position-ref full-height">
         <a class="by" href="https://zuxbrt.github.io/">by zux</a>
+        @if($streamactive)
         <div class='listeners'>
             Listening:&nbsp{{$listeners}}
         </div>
+        @endif
         @if($streamactive)
                 <div id="info">
                     <p class='title-main'>Metal Night Radio</p>
@@ -207,6 +217,10 @@
                     <audio id="stream-player" src="{{$streamurl}}" autoplay allow="autoplay" controls="true" volume="0.8"></audio>
 
                 </div>
+        @else
+            <div id='paused'>
+                Stream paused.
+            </div>
         @endif
         </div>
     </body>
