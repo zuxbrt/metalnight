@@ -269,12 +269,6 @@
                     @endif
                     </div>
 
-                    <!-- <div class="audio-player">
-                        <audio id="stream-player" controls autoplay>
-                            <source src="{{$streamurl}}.mp3" type="audio/mpeg">
-                        </audio>
-                    </div> -->
-
                     <audio class="audio-player" id="player" controls autoplay>
                         <source src="{{$streamurl}}.mp3" type="audio/mp3">
                     </audio>
@@ -300,9 +294,9 @@
     $( document ).ready(function() {
         let active = {!! json_encode($streamactive) !!};
         if(active){
-
+            // $("#player").get(0).play();
             console.clear();
-            console.log('brain undefined');
+            console.log('5 feninga');
             setInterval(function() {
                 $.ajax({
                     url: '{{route('getInfo')}}',
