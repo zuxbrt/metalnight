@@ -271,7 +271,7 @@
                     </div>
 
                     <div class="audio-player">
-                        <audio src="{{$streamurl}}" preload="auto" autoplay="autoplay" />
+                        <audio src="{{$streamurl}}" autoplay="autoplay" />
                     </div>
 
                     <div id="chat">
@@ -300,6 +300,7 @@
            
             //$("#stream-player").get(0).play();
             console.clear();
+            console.log('brain undefined');
             setInterval(function() {
                 $.ajax({
                     url: '{{route('getInfo')}}',
