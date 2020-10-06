@@ -269,6 +269,7 @@
                     @endif
                     </div>
 
+                    {{dd($streamurl)}}
                     <div class="audio-player">
                         <audio id="stream-player" controls autoplay>
                             <source src="{{$streamurl}}.mp3" type="audio/mpeg">
