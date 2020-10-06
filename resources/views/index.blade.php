@@ -17,8 +17,7 @@
             src="https://code.jquery.com/jquery-3.4.1.min.js"
             integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
             crossorigin="anonymous"></script>
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/audiojs/1.0.1/audio.min.js" integrity="sha512-n1UxE3D0oAro7q72ZVxyGIUqB3DBt+cYVNujO4yFXm74LVPkzUUgPyP5UGEkDEDAMGLNkDo4BnIMrE/M8b5lCw==" crossorigin="anonymous"></script>
-        <!-- Styles -->
+
         <style>
             html, body {
                 background-color: black;
@@ -271,7 +270,9 @@
                     </div>
 
                     <div class="audio-player">
-                        <audio src="{{$streamurl}}.mp3"/>
+                        <audio id="stream-player" controls autoplay>
+                            <source src="{{$streamurl}}.mp3" type="audio/mpeg">
+                        </audio>
                     </div>
 
                     <div id="chat">
@@ -291,14 +292,23 @@
 </html>
 <script>
     document.body.addEventListener("click", checkClose);
-    audiojs.events.ready(function() {
-        var as = audiojs.createAll();
-    });
     $( document ).ready(function() {
         let active = {!! json_encode($streamactive) !!};
         if(active){
            
             //$("#stream-player").get(0).play();
+
+            var promise = $("#stream-player").get(0).play();
+
+            if (promise !== undefined) {
+                promise.then(_ => {
+                    // Autoplay started!
+                }).catch(error => {
+                    // Autoplay was prevented.
+                    // Show a "Play" button so that user can start playback.
+                });
+            }
+
             console.clear();
             console.log('brain undefined');
             setInterval(function() {
