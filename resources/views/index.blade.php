@@ -17,7 +17,7 @@
             src="https://code.jquery.com/jquery-3.4.1.min.js"
             integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
             crossorigin="anonymous"></script>
-
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/audiojs/1.0.1/audio.min.js" integrity="sha512-n1UxE3D0oAro7q72ZVxyGIUqB3DBt+cYVNujO4yFXm74LVPkzUUgPyP5UGEkDEDAMGLNkDo4BnIMrE/M8b5lCw==" crossorigin="anonymous"></script>
         <!-- Styles -->
         <style>
             html, body {
@@ -226,12 +226,20 @@
                 cursor: pointer;
                 transition: box-shadow 0.5s ease;
                 user-select: none;
+                position: absolute;
+                right: 20px;
+                bottom: 10px;
             }
 
             #toggle-chat.active{
                 -webkit-box-shadow: 0px 0px 15px 3px rgba(255,0,0,1);
                 -moz-box-shadow: 0px 0px 15px 3px rgba(255,0,0,1);
                 box-shadow: 0px 0px 15px 3px rgba(255,0,0,1);
+            }
+
+            .audio-player{
+                margin-left: auto;
+                margin-right: auto;
             }
 
 
@@ -249,10 +257,12 @@
         @if($streamactive)
                 <div id="info">
                     <p class='title-main'>Metal Night Radio</p>
+
                     <div id="currentsongdiv">
                         <p class='infotext'>Now playing:</p>
                         <p id="currentsong" class='infotext current'>{{$currentsong}}</p> 
                     </div>
+
                     <div id="nextsongdiv">
                     @if($nextsong !== '')
                         <p class='infotext'>Up next:</p>
@@ -260,12 +270,16 @@
                     @endif
                     </div>
 
-                    <audio id="stream-player" src="{{$streamurl}}" autoplay allow="autoplay" controls="true" volume="0.8"></audio>
+                    <div class="audio-player">
+                        <audio src="{{$streamurl}}" preload="auto" autoplay="autoplay" />
+                    </div>
+
                     <div id="chat">
                         <iframe src="https://minnit.chat/metalnightchat?embed&dark&nickname=" style="border:none;width:90%;height:500px;" allowTransparency="true"></iframe><br>
                     </div>
                     <img id="toggle-chat" src="{{url('images/svg/chat.svg')}}" onclick="toggleChat()">
-                        <!-- <a href="https://minnit.chat/metalnightchat" target="_blank">HTML5 Chatroom powered by Minnit Chat</a> -->
+
+
                 </div>
         @else
             <div id='paused'>
@@ -281,6 +295,9 @@
     $( document ).ready(function() {
         let active = {!! json_encode($streamactive) !!};
         if(active){
+            audiojs.events.ready(function() {
+                var as = audiojs.createAll();
+            });
             //$("#stream-player").get(0).play();
             console.clear();
             setInterval(function() {
