@@ -269,12 +269,16 @@
                     @endif
                     </div>
 
-                    {{dd($streamurl)}}
-                    <div class="audio-player">
+                    <!-- <div class="audio-player">
                         <audio id="stream-player" controls autoplay>
                             <source src="{{$streamurl}}.mp3" type="audio/mpeg">
                         </audio>
-                    </div>
+                    </div> -->
+
+                    <audio class="audio-player" id="player" controls autoplay>
+                        <source src="{{$streamurl}}.mp3" type="audio/mp3">
+                    </audio>
+
 
                     <div id="chat">
                         <iframe src="https://minnit.chat/metalnightchat?embed&dark&nickname=" style="border:none;width:90%;height:500px;" allowTransparency="true"></iframe><br>
@@ -296,19 +300,6 @@
     $( document ).ready(function() {
         let active = {!! json_encode($streamactive) !!};
         if(active){
-           
-            //$("#stream-player").get(0).play();
-
-            var promise = $("#stream-player").get(0).play();
-
-            if (promise !== undefined) {
-                promise.then(_ => {
-                    // Autoplay started!
-                }).catch(error => {
-                    // Autoplay was prevented.
-                    // Show a "Play" button so that user can start playback.
-                });
-            }
 
             console.clear();
             console.log('brain undefined');
