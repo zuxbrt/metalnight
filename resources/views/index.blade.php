@@ -281,7 +281,7 @@
     $( document ).ready(function() {
         let active = {!! json_encode($streamactive) !!};
         if(active){
-            $("#stream-player").get(0).play();
+            //$("#stream-player").get(0).play();
             console.clear();
             setInterval(function() {
                 $.ajax({
