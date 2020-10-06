@@ -271,7 +271,7 @@
                     </div>
 
                     <div class="audio-player">
-                        <audio src="{{$streamurl}}" autoplay />
+                        <audio src="{{$streamurl}}"/>
                     </div>
 
                     <div id="chat">
