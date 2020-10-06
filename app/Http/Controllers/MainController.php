@@ -11,8 +11,7 @@ class MainController extends Controller
     
     public function index()
     {
-        //$this->getInfo();
-        $streamurl = env('STREAM_SERVER_URL').'stream';
+        $streamurl = env('STREAM_SERVER_URL').'/stream';
         $info = $this->getInfo();
         
         $currentsong = '';
@@ -51,7 +50,7 @@ class MainController extends Controller
         $ch = curl_init();
 
         // set url
-        curl_setopt($ch, CURLOPT_URL, "http://35.216.174.122:8000/admin.cgi?mode=viewxml&page=1&sid=1?user=admin&pass=test1234");
+        curl_setopt($ch, CURLOPT_URL, env('STREAM_SERVER_URL')."/admin.cgi?mode=viewxml&page=1&sid=1?user=admin&pass=tests1234");
         curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/x-www-form-urlencoded'));
 
         //return the transfer as a string
@@ -60,6 +59,7 @@ class MainController extends Controller
         // $output contains the output string
         $output = curl_exec($ch);        
         curl_close($ch);
+        dd($output);
         $oXML = new SimpleXMLElement($output);
 
         $info = [];
