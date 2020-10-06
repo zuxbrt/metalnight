@@ -59,7 +59,6 @@ class MainController extends Controller
         // $output contains the output string
         $output = curl_exec($ch);        
         curl_close($ch);
-        dd($output);
         $oXML = new SimpleXMLElement($output);
 
         $info = [];
