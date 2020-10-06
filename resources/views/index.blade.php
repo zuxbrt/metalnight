@@ -291,13 +291,13 @@
 </html>
 <script>
     document.body.addEventListener("click", checkClose);
-
+    audiojs.events.ready(function() {
+        var as = audiojs.createAll();
+    });
     $( document ).ready(function() {
         let active = {!! json_encode($streamactive) !!};
         if(active){
-            audiojs.events.ready(function() {
-                var as = audiojs.createAll();
-            });
+           
             //$("#stream-player").get(0).play();
             console.clear();
             setInterval(function() {
