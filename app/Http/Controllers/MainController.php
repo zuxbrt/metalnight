@@ -18,15 +18,17 @@ class MainController extends Controller
         $nextsong = '';
 
         $streamactive = true;
-        if($info['SERVERURL'] === ""){
-            $streamactive = false;
-        } else {
-            $currentsong = $info['SONGTITLE'];
-            $nextsong = isset($info['NEXTTITLE']) ? $info['NEXTTITLE'] : '';
-        }
-
         if(!$info){
             $streamactive = false;
+            $currentsong = "";
+            $nextsong = "";
+        } else {
+            if($info['SERVERURL'] === ""){
+                $streamactive = false;
+            } else {
+                $currentsong = $info['SONGTITLE'];
+                $nextsong = isset($info['NEXTTITLE']) ? $info['NEXTTITLE'] : '';
+            }
         }
 
         return view('index', [
