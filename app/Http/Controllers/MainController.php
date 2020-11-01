@@ -25,6 +25,10 @@ class MainController extends Controller
             $nextsong = isset($info['NEXTTITLE']) ? $info['NEXTTITLE'] : '';
         }
 
+        if(!$info){
+            $streamactive = false;
+        }
+
         return view('index', [
             'streamurl' => $streamurl,
             'currentsong' => $currentsong,
@@ -59,14 +63,18 @@ class MainController extends Controller
         // $output contains the output string
         $output = curl_exec($ch);        
         curl_close($ch);
-        $oXML = new SimpleXMLElement($output);
+        if($output){
+            $oXML = new SimpleXMLElement($output);
 
-        $info = [];
-        foreach($oXML->children() as $key => $val) {
-            $info[$key] = strval($val);
+            $info = [];
+            foreach($oXML->children() as $key => $val) {
+                $info[$key] = strval($val);
+            }
+    
+            return $info;
         }
-
-        return $info;
+        return null;
+        
     }
 
 }
