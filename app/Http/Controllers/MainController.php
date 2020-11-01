@@ -36,7 +36,7 @@ class MainController extends Controller
             'currentsong' => $currentsong,
             'nextsong' => $nextsong,
             'streamactive' => $streamactive,
-            'listeners' => $info['CURRENTLISTENERS']
+            'listeners' => $info ? $info['CURRENTLISTENERS'] : null
         ]);
     }
 
